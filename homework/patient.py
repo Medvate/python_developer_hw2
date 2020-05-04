@@ -176,7 +176,7 @@ class Patient:
             self._save_by_pandas(filename)
 
     def _save_by_standard(self, filename='DB.csv'):
-        with open(filename, 'a') as f:
+        with open(filename, 'a', encoding='utf-8') as f:
             if os.stat(filename).st_size == 0:
                 fieldnames = ('First name', 'Last name', 'Date of Birth',
                               'Phone number', 'Doc type', 'Doc number', 'Status')
@@ -254,7 +254,7 @@ class PatientCollection:
         return len(self._patients)
 
     def _create_from_csv(self, path_to_file):
-        with open(path_to_file, 'r') as file:
+        with open(path_to_file, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file, delimiter=',')
 
             inv_sts = {value: key for key, value in Patient._STATUSES.items()}

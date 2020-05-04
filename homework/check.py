@@ -59,10 +59,10 @@ def check_last_name(last_name):
 
 def check_birth_date(birth_date):
     if isinstance(birth_date, str):
-        try:
+        if not any(symbol.isalpha() for symbol in birth_date):
             result = str(pd.to_datetime(birth_date).date())
             return result
-        except ValueError:
+        else:
             ERR_LOG.error(f"Ошибка в 'дате рождения': '{birth_date}'")
             raise ValueError("Invalid Date of Birth")
     else:
